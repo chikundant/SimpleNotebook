@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 from project import login
-from project import db
+from project.db import MySQLUser
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -12,6 +12,7 @@ class User(UserMixin):
     password_hash = None
 
     def load(self, id):
+        db = MySQLUser()
         info = db.get_by_field('*', 'user', 'id', int(id))
         self.id = info[0]
         self.username = info[1]

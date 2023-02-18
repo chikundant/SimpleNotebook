@@ -2,8 +2,7 @@ from project import app
 from project.forms import LoginForm, RegisterForm, NoteForm
 from flask import render_template, url_for, redirect
 from flask_login import login_required, logout_user, current_user, login_user
-from project import db
-from project.db import MySQLNotes
+from project.db import MySQLNotes, MySQLUser
 from project.models import User
 
 
@@ -11,7 +10,9 @@ from project.models import User
 @app.route("/index")
 @login_required
 def index():
-    return render_template('index.html')
+    db = MySQLNotes()
+    notes = db.get_by_field('*', 'note', 'user_id', current_user.get_id())
+    return render_template('index.html', notes=notes)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -20,6 +21,7 @@ def login():
         return redirect(url_for('index'))
 
     form = LoginForm()
+    db = MySQLUser()
 
     if form.validate_on_submit():
         user = User()
@@ -46,6 +48,7 @@ def register():
         return redirect(url_for('index'))
 
     form = RegisterForm()
+    db = MySQLUser()
 
     if form.validate_on_submit():
         user = User()
@@ -59,9 +62,9 @@ def register():
 @login_required
 def add_note():
     form = NoteForm()
-    db_note = MySQLNotes()
+    db = MySQLNotes()
     if form.validate_on_submit():
-        db_note.insert_field('note', current_user.get_id(), form.title.data, form.body.data)
+        db.insert_field('note', current_user.get_id(), form.title.data, form.body.data)
         return redirect(url_for('index'))
     return render_template("add.html", form=form)
 

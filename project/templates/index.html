@@ -1,1 +1,9 @@
 {% extends 'base.html' %}
+
+{% block content %}
+{% for note in notes %}
+
+{% include "_note.html" %}
+
+{% endfor %}
+{% endblock %}

@@ -5,7 +5,6 @@ from project.db import MySQLUser
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = MySQLUser()
 login = LoginManager(app)
 login.login_view = 'login'
 

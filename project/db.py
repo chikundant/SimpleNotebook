@@ -62,7 +62,7 @@ class MySQLNotes(DBModel):
                 select_query = "SELECT {} FROM `{}` WHERE `{}` = '{}'"
                 with conn.cursor() as cursor:
                     cursor.execute(select_query.format(select, table, subj, comp))
-                    res = cursor.fetchone()
+                    res = cursor.fetchall()
                     if not res:
                         return None
 
