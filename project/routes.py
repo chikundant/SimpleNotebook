@@ -1,8 +1,9 @@
 from project import app
-from project.forms import LoginForm, RegisterForm
+from project.forms import LoginForm, RegisterForm, NoteForm
 from flask import render_template, url_for, redirect
 from flask_login import login_required, logout_user, current_user, login_user
 from project import db
+from project.db import MySQLNotes
 from project.models import User
 
 
@@ -54,11 +55,17 @@ def register():
     return render_template('register.html', form=form)
 
 
-@app.route("/add_note")
+@app.route("/add_note", methods=['GET', 'POST'])
+@login_required
 def add_note():
-    return 'add_note'
+    form = NoteForm()
+    db_note = MySQLNotes()
+    if form.validate_on_submit():
+        db_note.insert_field('note', current_user.get_id(), form.title.data, form.body.data)
+        return redirect(url_for('index'))
+    return render_template("add.html", form=form)
 
 
-@app.route("/my_note")
+@app.route("/my_note", methods=['GET', 'POST'])
 def my_note():
     return 'my_note'

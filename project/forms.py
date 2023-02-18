@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, PasswordField, EmailField, BooleanField
+from wtforms import SubmitField, StringField, PasswordField, EmailField, BooleanField, TextAreaField
 from wtforms.validators import EqualTo, ValidationError, DataRequired
 from project import db
 from project.models import User
@@ -34,3 +34,9 @@ class RegisterForm(FlaskForm):
             user.load(data[0])
         if user.email is not None:
             raise ValidationError('Please use a different email address.')
+
+
+class NoteForm(FlaskForm):
+    title = StringField('Title')
+    body = TextAreaField('Text')
+    submit = SubmitField('Save')
