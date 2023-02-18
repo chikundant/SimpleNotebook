@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/style.css") }}">
+    <title>ItBook</title>
+</head>
+<body>
+    <main>
+        <header>
+            <div class = 'header_menu'>
+                <a href="{{url_for('index')}}"><img src="" alt="icon"></a>
+                <ul class="menu_block">
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('add_note')}}">Add</a></li>
+                    <li><a href="{{url_for('my_note')}}">My Notes</a></li>
+                    <li><a href="{{url_for('logout')}}">logout</a></li>
+                </ul>
+                <ul class="icons_block">
+                </ul>
+            </div>
+        </header>
+        <div class="main_content_wrapper">
+            {% block content %}{% endblock %}
+        </div>
+        {% block footer %}{% endblock %}
+    </main>
+</body>
+</html>
