@@ -1,6 +1,6 @@
 from project import app
 from project.forms import LoginForm, RegisterForm, NoteForm
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 from flask_login import login_required, logout_user, current_user, login_user
 from project.db import MySQLNotes, MySQLUser
 from project.models import User
@@ -12,7 +12,10 @@ from project.models import User
 def index():
     db = MySQLNotes()
     notes = db.get_by_field('*', 'note', 'user_id', current_user.get_id())
-    return render_template('index.html', notes=notes)
+    if notes:
+        return render_template('index.html', notes=notes)
+    else:
+        return redirect(url_for('add_note'))
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -69,6 +72,18 @@ def add_note():
     return render_template("add.html", form=form)
 
 
-@app.route("/my_note", methods=['GET', 'POST'])
-def my_note():
-    return 'my_note'
+@app.route("/my_note/<id>", methods=['GET', 'POST'])
+@login_required
+def my_note(id):
+    form = NoteForm()
+    db = MySQLNotes()
+    note = db.get_by_field('*', 'note', 'id', id)
+
+    if form.is_submitted() and 'save' in request.form:
+        db.update_field('note', id, form.title.data, form.body.data)
+        return redirect(url_for('index'))
+    elif form.is_submitted() and 'delete' in request.form:
+        db.delete_field('note', id)
+        return redirect(url_for('index'))
+    form.body.data = note[0][3]
+    return render_template('my_note.html', form=form, note=note[0])

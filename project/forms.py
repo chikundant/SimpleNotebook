@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField, PasswordField, EmailField, BooleanField, TextAreaField
 from wtforms.validators import EqualTo, ValidationError, DataRequired
-from project import db
+from project.db import MySQLUser
 from project.models import User
 
 
@@ -20,6 +20,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Register")
 
     def validate_username(self, username):
+        db = MySQLUser()
         data = db.get_by_field('*', 'user', 'username', username.data)
         user = User()
         if data is not None:
@@ -28,6 +29,7 @@ class RegisterForm(FlaskForm):
             raise ValidationError('Please use a different username.')
 
     def validate_email(self, email):
+        db = MySQLUser()
         data = db.get_by_field('*', 'user', 'email', email.data)
         user = User()
         if data is not None:
@@ -39,4 +41,7 @@ class RegisterForm(FlaskForm):
 class NoteForm(FlaskForm):
     title = StringField('Title')
     body = TextAreaField('Text')
-    submit = SubmitField('Save')
+    save = SubmitField('Save')
+    delete = SubmitField('Delete')
+
+

@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+
+{% block content %}
+<div class="wrapper">
+    <form action="", method="POST", class="note_scope">
+
+        <h1>{{form.title(value=note[2], class='scope_title')}}</h1>
+        {{form.body(class="scope_body")}}
+        <p class="scope_date">{{note[4]}}</p>
+        <div class="scope_buttons">
+            {{form.save(class='form_item')}}
+            {{form.delete(class='form_item')}}
+        </div>
+    </form>
+</div>
+{% endblock %}

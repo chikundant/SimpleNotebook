@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -31,4 +32,113 @@ header{
 
 .header_menu .menu_block a{
     padding-right: 15px;
+}
+
+.main_content_wrapper{
+    width: 80%;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.note{
+    display: block;
+    position: relative;
+    width: 450px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.235);
+    word-wrap: break-word;
+}
+
+.note:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.093);
+}
+
+.note:active{
+    color: rgb(98, 98, 98);
+    box-shadow: 1px 1px 1px 1px rgba(33, 33, 33, 0.05);
+}
+
+
+.note_footer{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    font-size: small;
+}
+
+.add_form{
+    width: 400px;
+    margin-top: 50px;
+}
+
+.add_form_item{
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.371);
+}
+
+.add_form_body{
+    height: 100px;  
+}
+
+
+.form_block{
+    margin: 0px auto;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+.form_block p {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper{
+    width: 100%;    
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.note_scope{
+    width: 60%;
+    word-wrap: break-word;
+}
+
+.scope_title{
+    font-size: large;
+    font-weight: bold;
+
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.scope_body{
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.scope_buttons{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+}
+.scope_date{
+    margin-bottom: 50px;
+    font-size: x-small;
+}
+.form_item{
+    width: 100%;
 }
