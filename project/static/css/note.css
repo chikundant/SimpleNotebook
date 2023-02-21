@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700&family=Roboto:wght@100;300;700;900&display=swap');
+
+input {outline:none;}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
+    text-decoration: none;
+}
+
+.note{
+    color: black;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(226, 226, 226);
+    word-break: break-all;
+    margin-top: 25px;
+}
+
+.note_header{
+    margin-bottom: 10px;
+}
+
+.note_date{
+    text-align: right;
+    font-size: smaller;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.note:hover{
+    box-shadow: 1px 1px 1px 1px rgb(215, 215, 215);
+}
+
+.note:active{
+    background-color: rgb(247, 247, 247);
+}

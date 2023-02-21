@@ -6,16 +6,44 @@ from project.db import MySQLNotes, MySQLUser
 from project.models import User
 
 
-@app.route("/")
-@app.route("/index")
+@app.route("/", methods=['POST', 'GET'])
+@app.route("/index", methods=['POST', 'GET'])
 @login_required
 def index():
     db = MySQLNotes()
+    form = NoteForm()
     notes = db.get_by_field('*', 'note', 'user_id', current_user.get_id())
     if notes:
-        return render_template('index.html', notes=notes)
+        return render_template('index.html', notes=notes, form=form)
     else:
-        return redirect(url_for('add_note'))
+        return render_template('not_found.html', form=form)
+
+
+@app.route("/search", methods=['POST', 'GET'])
+@login_required
+def search():
+    db = MySQLNotes()
+    form = NoteForm()
+    if request.method == 'POST':
+        if form.is_submitted():
+            print(form.time._value())
+            print(form.search.data)
+
+            if not form.time._value() and form.search.data != '':
+                notes = db.find_field_by_one_definition('note', 'title', current_user.get_id(), form.search.data)
+                if notes:
+                    return render_template('index.html', notes=notes, form=form)
+            elif form.time._value() and form.search.data == '':
+                notes = db.find_field_by_one_definition('note', 'time', current_user.get_id(), form.time._value())
+                if notes:
+                    return render_template('index.html', notes=notes, form=form)
+
+            elif form.time._value() and form.search.data != '':
+                notes = db.find_field_by_two_definitions(current_user.get_id(), form.time._value(), form.search.data)
+                if notes:
+                    return render_template('index.html', notes=notes, form=form)
+
+    return render_template('not_found.html', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])

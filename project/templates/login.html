@@ -1,29 +1,29 @@
-<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/login.css">
 <div class="wrapper">
-    <div class="form_block">
+    <div class="login_block">
         <h1>Sing In</h1>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
-            <p>
-                {{form.username.label}} 
-                {{form.username(class='form_item')}}
-                {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{form.password.label}} 
-                {{form.password(class='form_item')}}
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            {{ form.remember_me() }} 
-            {{ form.remember_me.label }}
+            {{form.username.label}}
+            {{form.username(class='form_item')}}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
 
-            <p>
-                {{ form.submit }}
-            </p>
+            {{form.password.label}}
+            {{form.password(class='form_item')}}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            
+            <div class="remember">
+                    
+                {{ form.remember_me() }}
+                {{ form.remember_me.label }}
+            </div>
+
+            {{ form.submit(class='button') }}
+
             <a href="{{url_for('register')}}">Registration</a>
         </form>
     </div>

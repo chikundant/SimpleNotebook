@@ -114,3 +114,41 @@ class MySQLNotes(DBModel):
                     conn.commit()
         except Error as e:
             print(e)
+
+    def find_field_by_one_definition(self, table, definition, id, value):
+        try:
+            with connect(
+                    host=config.HOST,
+                    user=config.USER,
+                    password=config.PASSWORD,
+                    database="notebook"
+            ) as conn:
+                find_query = "SELECT * FROM {} WHERE user_id = {} AND {} LIKE '%{}%' ORDER BY title DESC"
+                with conn.cursor() as cursor:
+                    cursor.execute(find_query.format(table, id, definition, value))
+                    res = cursor.fetchall()
+                    if not res:
+                        return None
+
+                    return res
+        except Error as e:
+            print(e)
+
+    def find_field_by_two_definitions(self, id, value1, value2):
+        try:
+            with connect(
+                    host=config.HOST,
+                    user=config.USER,
+                    password=config.PASSWORD,
+                    database="notebook"
+            ) as conn:
+                find_query = "SELECT * FROM note WHERE user_id = {} AND time LIKE '%{}%' AND title LIKE '%{}%' ORDER BY time DESC"
+                with conn.cursor() as cursor:
+                    cursor.execute(find_query.format(id, value1, value2))
+                    res = cursor.fetchall()
+                    if not res:
+                        return None
+
+                    return res
+        except Error as e:
+            print(e)

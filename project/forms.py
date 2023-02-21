@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, PasswordField, EmailField, BooleanField, TextAreaField
+from wtforms import SubmitField, StringField, PasswordField, EmailField, BooleanField, TextAreaField, DateField
 from wtforms.validators import EqualTo, ValidationError, DataRequired
 from project.db import MySQLUser
 from project.models import User
@@ -16,7 +16,7 @@ class RegisterForm(FlaskForm):
     username = StringField('Username')
     email = EmailField('Email')
     password = PasswordField('Password')
-    password2 = PasswordField('Password', validators=[EqualTo('password')])
+    password2 = PasswordField('Repeat password', validators=[EqualTo('password')])
     submit = SubmitField("Register")
 
     def validate_username(self, username):
@@ -43,5 +43,7 @@ class NoteForm(FlaskForm):
     body = TextAreaField('Text')
     save = SubmitField('Save')
     delete = SubmitField('Delete')
-
+    search = StringField('Search')
+    submit = SubmitField('Find')
+    time = DateField('Time', format='%m-%d-%y')
 

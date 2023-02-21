@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/static/css/add.css">
 {% extends  'base.html' %}
 
 {% block content%}
@@ -6,10 +7,10 @@
             {{ form.hidden_tag() }}
 
             {{form.title.label}}
-            {{form.title(class='add_form_item')}}
+            {{form.title(class='title')}}
 
             {{form.body.label}}
-            {{form.body(class='add_form_item add_form_body')}}
+            {{form.body(class='body')}}
 
 
             {{form.save(class='add_form_item')}}

@@ -1,0 +1,41 @@
+.add_form{
+    margin-top: 50px;
+    width: 400px;
+}   
+
+.title{
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgb(234, 234, 234);
+    padding: 10px;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.body{
+    padding: 10px;
+    width: 100%;
+    min-height: 300px;
+    max-width: 400px;
+    min-width: 400px;
+    border: 1px solid rgb(234, 234, 234);
+}
+
+.add_form_item{
+    margin-top: 15px;
+    height: 25px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid rgb(224, 224, 224);
+    cursor: pointer;
+
+    background-color: rgb(252, 252, 252);
+}
+
+.add_form_item:hover{
+    background-color: rgb(237, 237, 237);
+}
+
+.add_form_item:active{
+    background-color: rgb(224, 224, 224);
+}
