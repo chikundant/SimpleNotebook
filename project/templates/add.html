@@ -1,4 +1,8 @@
+
 <link rel="stylesheet" href="/static/css/add.css">
+<script src="/static/scripts/add.js"></script>
+
+
 {% extends  'base.html' %}
 
 {% block content%}
@@ -12,9 +16,12 @@
             {{form.body.label}}
             {{form.body(class='body')}}
 
-
-            {{form.save(class='add_form_item')}}
-
+            <div class="footer_add">
+                {{form.save(class='add_form_item')}}
+            
+                <span class="current_count_of_words">0</span>
+                <span class="limit_of_words">/250</span>
+            </div>
         </form>
     </div>
 {% endblock %}

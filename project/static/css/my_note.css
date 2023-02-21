@@ -21,9 +21,8 @@
     border: 1px solid rgba(255, 255, 255, 0);
 }
 
-.scope_date{
+.scope_footer{
     padding: 10px;
-    text-align: right;
     font-size: smaller;
     font-weight: 200;
     font-style: italic;
@@ -49,4 +48,11 @@
 
 .note_scope .button:active{
     background-color: rgb(224, 224, 224);
+}
+.scope_date{
+    text-align: right;
+    display: block;
+}
+.note_scope .current_count{
+    text-align: left;
 }
