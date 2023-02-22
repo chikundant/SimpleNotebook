@@ -1,6 +1,6 @@
 HOST = 'localhost'
-USER = 'chikunda'
-PASSWORD = 'D52292023290'
+USER = 'username'
+PASSWORD = 'password'
 
 
 class Config:
