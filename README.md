@@ -1,4 +1,4 @@
-# notebook
+# Notebook Flask
 
 _Simple notebook with Mysql database using Flask_
 
