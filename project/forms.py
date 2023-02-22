@@ -21,7 +21,7 @@ class RegisterForm(FlaskForm):
 
     def validate_username(self, username):
         db = MySQLUser()
-        data = db.get_by_field('*', 'user', 'username', username.data)
+        data = db.get_by_field('*', 'username', username.data)
         user = User()
         if data is not None:
             user.load(data[0])
@@ -30,7 +30,7 @@ class RegisterForm(FlaskForm):
 
     def validate_email(self, email):
         db = MySQLUser()
-        data = db.get_by_field('*', 'user', 'email', email.data)
+        data = db.get_by_field('*', 'email', email.data)
         user = User()
         if data is not None:
             user.load(data[0])

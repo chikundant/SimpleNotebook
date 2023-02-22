@@ -13,11 +13,12 @@ class User(UserMixin):
 
     def load(self, id):
         db = MySQLUser()
-        info = db.get_by_field('*', 'user', 'id', int(id))
-        self.id = info[0]
-        self.username = info[1]
-        self.email = info[2]
-        self.password_hash = info[3]
+        info = db.get_by_field('*', 'id', id)
+        if info:
+            self.id = info[0]
+            self.username = info[1]
+            self.email = info[2]
+            self.password_hash = info[3]
         return self
 
     def set_password(self, password):
@@ -25,6 +26,12 @@ class User(UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def is_none(self):
+        if self.username is None or self.password_hash is None:
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
